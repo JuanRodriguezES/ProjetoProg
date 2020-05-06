@@ -7,7 +7,8 @@ using namespace std;
 int main()
 {
 
-	cout << "BIXÃO PORRA";
+	cout << "BIXÃƒO PORRA";
+	cout << "GITHUB TEST";
 
 
 	return 0;
