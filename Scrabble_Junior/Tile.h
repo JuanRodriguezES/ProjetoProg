@@ -13,10 +13,6 @@ public:
 
 	~tile();
 
-	vector<string> TileWords(int CoordX, int CoordY);
-
-	
-
 
 private:
 
@@ -26,7 +22,7 @@ private:
 
 	int CoordY;
 
-	bool marked;
+	bool marked; 
 
 };
 
@@ -42,9 +38,6 @@ tile::~tile()
 
 
 
-vector<string> TileWords(int CoordX, int CoordY)
-{
 
-}
 
 
