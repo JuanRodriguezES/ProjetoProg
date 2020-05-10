@@ -13,17 +13,18 @@ public:
 
 	~tile();
 
-
-private:
-
 	char letter;
 
 	int CoordX;
 
 	int CoordY;
 
-	bool marked; 
+	bool marked;
 
+
+private:
+
+	 
 };
 
 tile::tile()

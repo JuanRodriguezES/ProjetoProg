@@ -2,6 +2,7 @@
 #include "board.h"
 #include "Tile.h"
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -13,8 +14,9 @@ vector <string> TileWord(int x, int y);
 
 int main()
 {
+	board board;
+	
 
-	int dim_board;
 
 	ifstream file("WORDS.txt"); //FILE COM AS PALAVRAS QUE O USER TEM A DISPOSIÇÃO
 
@@ -22,9 +24,15 @@ int main()
 	{
 		cout << "***** WELCOME TO SCRABBLE JUNIOR ******" << endl;
 
+
 	}
 
 	else cout << "The file that contains the dictionary could not open" << endl;
+
+
+	
+
+
 
 	
 
