@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <vector>
-#include "Tile.h"
+#include <fstream>
+#include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -11,8 +13,8 @@ class board
 public:
 	board();
 	~board();
-	void	BoardBuilter(vector<vector<tile>> &v, const int dim);
-	bool	BoardInsertWord(string word, vector<vector<tile>>&v , char direction, char x, char y);
+    bool CheckWord(ifstream& Inputfile, string search);
+    void board_file(ofstream& Outputfile, vector<vector<char>> boardvect);
 
 private:
 };
@@ -26,54 +28,76 @@ board::~board()
 {
 }
 
-void board::BoardBuilter(vector<vector<tile>>& v, const int dim)
+bool    board:: CheckWord(ifstream& Inputfile, string search)
 {
-	char x_line = 'a';
-	char y_line = 'A';
-
-	tile	tile1;
-
-	tile1.letter = ' ';
-
-	for (size_t i = 0; i < dim; i++) 
-	{
-		v.push_back(vector<tile>());
-		for (size_t j = 0; j < dim; j++)
-		{
-			if (j == 0 && i != 0)
-			{
-				tile1.letter = y_line;
-				v[i].push_back(tile1);
-			}
-			if (i == 0 && j == 0)
-			{
-				v[i].push_back(tile1);
-			}
-			else if (i == 0)
-			{
-				tile1.letter = x_line;
-				v[i].push_back(tile1);
-			}
-			else
-			{
-				v[i].push_back(tile1);
-			}
 
 
-			x_line++;
-		
-		}
 
-		y_line++;
+    int offset;
+    string line;
+    
 
-	}
+    if (Inputfile.is_open())
+    {
+        while (!Inputfile.eof())
+        {
+            getline(Inputfile, line);
+            if ((offset = line.find(search, 0)) != string::npos)
+            {
+                return true;
+            }
+        }
+
+        return false;
+     
+    }
+    else
+        cout << "Unable to open this file." << endl;
+
+    return false;
 }
-
-bool board::BoardInsertWord(string word, vector<vector<tile>>& v, char direction, char x, char y)
+void    board::board_file(ofstream& Outputfile, vector<vector<char>> boardvect)
 {
-	//FUNÇÃO DE INSERÇÃO DE WORD E VERIFICAÇÃO DE PREENCHIMENTO
+    vector<char> x_line, y_line;
 
+    char char_x = 'a', char_y = 'A';
 
+    for (size_t i = 0; i < boardvect[0].size() + 1; i++)
+    {
+        
+        if (i == 0) x_line.push_back(' ');
+        else
+        {
+            x_line.push_back(char_x);
+            char_x++;
+        }
+    }
 
+    for (size_t i = 0; i < boardvect.size(); i++)
+    {
+        y_line.push_back(char_y);
+        char_y++;
+    }
+    for (size_t i = 0; i < x_line.size(); i++)
+    {
+        Outputfile << setw(2) << x_line[i];
+    }
+    
+    Outputfile << endl;
+    
+    
+    if (Outputfile.is_open())
+    {
+        for (int i = 0; i < boardvect.size(); i++)
+        {
+            Outputfile << setw(2) << y_line[i];
+            for (int j = 0; j < boardvect[i].size(); j++)
+            {
+                Outputfile << setw(2) << boardvect[i][j];
+            }
+            
+            Outputfile << endl;
+        }
 
+    }
 }

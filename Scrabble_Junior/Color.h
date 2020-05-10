@@ -70,20 +70,3 @@ void setcolor(unsigned int color, unsigned int background_color)
         SetConsoleTextAttribute(hCon, color | BACKGROUND_BLUE | BACKGROUND_GREEN |
             BACKGROUND_RED);
 }
-//==========================================================================================
-// Fill the screen with colored numbers
-int main()
-{
-    clrscr();
-    srand((unsigned int)time(NULL));
-    for (int x = 0; x < 80; x++)
-        for (int y = 0; y < 24; y++)
-        {
-            gotoxy(x, y);
-            if (rand() % 2 == 0)
-                setcolor(x % 15 + 1);
-            else
-                setcolor(y % 15 + 1, rand() % 2);
-            cout << x % 10;
-        }
-}
