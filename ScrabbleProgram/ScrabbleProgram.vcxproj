@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="board_main.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scrabble_Junior.cpp" />

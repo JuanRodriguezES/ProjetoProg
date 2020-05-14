@@ -8,6 +8,7 @@
 #include <sstream>
 #include <iomanip>
 #include "Color.h"
+#include "tile.h"
 
 using namespace std;
 
@@ -18,9 +19,9 @@ public:
 	~Board();
 	void GetWords(ifstream& InputBoard);
 
-	void WordVector(vector<vector<char>>& v, string coordinates, char direction, string word);
+	void WordVector(vector<vector<tile>>& v, string coordinates, char direction, string word);
 
-	void board_built(vector<vector<char>> boardvect);
+	void board_built(vector<vector<tile>> boardvect);
 
 private:
 
@@ -43,7 +44,7 @@ void Board::GetWords(ifstream& InputBoard)
 
 	char direction, separator;
 
-	vector<vector<char>> board_vector;
+	vector<vector<tile>> board_vector;
 
 
 	getline(InputBoard, line);
@@ -62,7 +63,7 @@ void Board::GetWords(ifstream& InputBoard)
 
 	
 
-	board_vector.resize(length, vector<char>(width));
+	board_vector.resize(length, vector<tile>(width));
 
 	ss.clear();
 	
@@ -91,7 +92,7 @@ void Board::GetWords(ifstream& InputBoard)
 	
 }
 
-void Board::WordVector(vector<vector<char>>& v, string coordinates, char direction, string word)
+void Board::WordVector(vector<vector<tile>>& v, string coordinates, char direction, string word)
 {
 	size_t x_coord = coordinates[0] - 'A';
 
@@ -110,7 +111,7 @@ void Board::WordVector(vector<vector<char>>& v, string coordinates, char directi
 			
 			for (size_t i = y_coord; i < word.size(); i++)
 			{
-				v[x_coord][i] = word[index];
+				v[x_coord][i].ch = word[index];
 				
 
 			
@@ -123,7 +124,7 @@ void Board::WordVector(vector<vector<char>>& v, string coordinates, char directi
 			index = 0;
 			for (size_t i = x_coord; i < word.size(); i++)
 			{
-				v[i][y_coord] = word[index];
+				v[i][y_coord].ch = word[index];
 				index++;
 			}
 			break;
@@ -134,7 +135,7 @@ void Board::WordVector(vector<vector<char>>& v, string coordinates, char directi
 
 }
 
-void   Board::board_built(vector<vector<char>> boardvect)
+void   Board::board_built(vector<vector<tile>> boardvect)
 {
 	vector<char> x_line, y_line;
 
@@ -170,7 +171,7 @@ void   Board::board_built(vector<vector<char>> boardvect)
 		for (int j = 0; j < boardvect[i].size(); j++)
 		{
 			setcolor(0, 15);
-			cout << setw(2) << boardvect[i][j];
+			cout << setw(2) << boardvect[i][j].ch;
 		}
 
 		setcolor(15, 0);
