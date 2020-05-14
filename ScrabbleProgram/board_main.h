@@ -93,11 +93,11 @@ void Board::GetWords(ifstream& InputBoard)
 
 void Board::WordVector(vector<vector<char>>& v, string coordinates, char direction, string word)
 {
-	size_t x_coord = coordinates[1] - 'a';
+	size_t x_coord = coordinates[0] - 'A';
 
 	
 
-	size_t y_coord = coordinates[0] - 'A';
+	size_t y_coord = coordinates[1] - 'a';
 
 	 
 	size_t index = 0;
@@ -108,9 +108,9 @@ void Board::WordVector(vector<vector<char>>& v, string coordinates, char directi
 	{
 		case 'h':
 			
-			for (size_t i = x_coord; i < word.size(); i++)
+			for (size_t i = y_coord; i < word.size(); i++)
 			{
-				v[i][y_coord] = word[index];
+				v[x_coord][i] = word[index];
 				
 
 			
@@ -121,9 +121,9 @@ void Board::WordVector(vector<vector<char>>& v, string coordinates, char directi
 
 		case 'v':
 			index = 0;
-			for (size_t i = y_coord; i < word.size(); i++)
+			for (size_t i = x_coord; i < word.size(); i++)
 			{
-				v[x_coord][i] = word[index];
+				v[i][y_coord] = word[index];
 				index++;
 			}
 			break;
@@ -170,7 +170,7 @@ void   Board::board_built(vector<vector<char>> boardvect)
 		for (int j = 0; j < boardvect[i].size(); j++)
 		{
 			setcolor(0, 15);
-			cout << setw(2) << boardvect[j][i];
+			cout << setw(2) << boardvect[i][j];
 		}
 
 		setcolor(15, 0);
