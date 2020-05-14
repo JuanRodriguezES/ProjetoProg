@@ -17,7 +17,7 @@ class Board
 public:
 	Board();
 	~Board();
-	void GetWords(ifstream& InputBoard);
+	vector<vector<tile>> GetWords(ifstream& InputBoard);
 
 	void WordVector(vector<vector<tile>>& v, string coordinates, char direction, string word);
 
@@ -36,7 +36,7 @@ Board::~Board()
 }
 
 
-void Board::GetWords(ifstream& InputBoard)
+vector<vector<tile>> Board::GetWords(ifstream& InputBoard)
 {
 	int length, width;
 
@@ -88,7 +88,11 @@ void Board::GetWords(ifstream& InputBoard)
 
 	}
 
+
+
 	board_built(board_vector);
+
+	return board_vector;
 	
 }
 
@@ -139,6 +143,8 @@ void   Board::board_built(vector<vector<tile>> boardvect)
 {
 	vector<char> x_line, y_line;
 
+	const char space = ' ';
+
 	char char_x = 'a', char_y = 'A';
 
 	for (size_t i = 0; i < boardvect[0].size() + 1; i++)
@@ -157,8 +163,10 @@ void   Board::board_built(vector<vector<tile>> boardvect)
 		y_line.push_back(char_y);
 		char_y++;
 	}
+	cout << space;
 	for (size_t i = 0; i < x_line.size(); i++)
 	{
+		setcolor(15, 0);
 		cout << setw(2) << x_line[i];
 	}
 
@@ -167,18 +175,19 @@ void   Board::board_built(vector<vector<tile>> boardvect)
 
 	for (int i = 0; i < boardvect.size(); i++)
 	{
-		cout << setw(2) << y_line[i];
+		setcolor(15, 0);
+		cout << setw(2) << y_line[i] << space;
 		for (int j = 0; j < boardvect[i].size(); j++)
 		{
 			setcolor(0, 15);
 			cout << setw(2) << boardvect[i][j].ch;
 		}
-
-		setcolor(15, 0);
-
 		cout << endl;
 	}
 
+	setcolor(15, 0);
+
+	
 	
 }
 

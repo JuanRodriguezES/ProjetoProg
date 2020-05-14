@@ -1,24 +1,28 @@
 #include <iostream>
 #include <fstream>
 #include "Board_main.h"
+#include "Game.h"
+#include "Player.h"
 
 using namespace std;
 
 
 int main()
 {
-	Board board;
+	Game game;
 
-	ifstream myfile("C:/Users/sjoao/source/repos/ProjetoProg/Scrabble_Junior/Board.txt");
+	cout << "************ Welcome To Scrabble Junior ************" << endl;
 
-	if (myfile.is_open())
-	{
+	cout << "Object Of The Game: " << endl;
 
-		board.GetWords(myfile);
-	}
-	else
-		cout << "the file did not open" << endl;
+	cout << "************" << endl;
 
-	
+	cout << endl << "Cover the game board lettes with matching letter tiles and collect ";
+
+	cout << "the most scoring chips for completing words." << endl;
+
+	vector<Player> Players = game.CreatePlayer();
+
+
 
 }

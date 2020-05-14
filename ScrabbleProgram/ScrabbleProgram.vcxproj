@@ -140,6 +140,9 @@
   <ItemGroup>
     <ClInclude Include="board_main.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Pool.h" />
     <ClInclude Include="tile.h" />
   </ItemGroup>
   <ItemGroup>
