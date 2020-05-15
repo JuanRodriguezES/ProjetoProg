@@ -44,9 +44,13 @@ bool    board:: CheckWord(ifstream& Inputfile, string search)
             getline(Inputfile, line);
             if ((offset = line.find(search, 0)) != string::npos)
             {
+                Inputfile.seekg(ios::beg);
                 return true;
+
             }
         }
+
+        Inputfile.seekg(ios::beg);
 
         return false;
      
@@ -54,7 +58,7 @@ bool    board:: CheckWord(ifstream& Inputfile, string search)
     else
         cout << "Unable to open this file." << endl;
 
-    return false;
+    
 }
 void    board::board_file(ofstream& Outputfile, vector<vector<char>> boardvect)
 {
